@@ -1,0 +1,8 @@
+<br><br>
+<h4>Patient Record</h4>
+<div class="card" *ngFor="let patientDt of patientData " id="main">
+    <div class="card-header">hospital: {{patientDt.hospital}}</div>
+    <div class="card-body">disease:{{ patientDt.disease}}</div>
+    <div class="card-footer">doctor:{{patientDt.doctor}}</div>
+</div>
+

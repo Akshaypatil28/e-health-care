@@ -1,0 +1,11 @@
+<!-- <form  (ngSubmit)="submit(frm)" #frm="ngForm">
+	<label for="uid">Enter Addhar Id</label>
+	<input type="number"   name="uid" id="uid" ngModel>
+	<button type="submit">Login</button>
+</form> -->
+<br><br><br>
+<form class="form-inline" (ngSubmit)="submit(frm)" #frm="ngForm">
+  <label for="uid" class="mr-sm-2">UID:</label>
+  <input type="number" class="form-control mb-2 mr-sm-2" name="uid" id="uid" ngModel>
+  <button type="submit" class="btn btn-primary mb-2">Login</button>
+</form>
