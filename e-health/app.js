@@ -6,6 +6,8 @@ var cors = require('cors');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+var multer = require('multer');
+
 
 
 var doctorRouter = require('./routes/doctor');

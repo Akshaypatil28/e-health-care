@@ -18,4 +18,5 @@ url = 'http://localhost:8080';
   getData(){
     return this.http.post(`${this.url}/patient/data`, {'uid':this.cookieService.get('patient_uid') });
   }
+
 }

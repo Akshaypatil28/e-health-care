@@ -1,4 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
+const URL = 'http://localhost:8080/patient/upload';
+// import { PatientAuthService } from '../../patient-auth.service';
+
+
+
 
 @Component({
   selector: 'app-patient-upload',
@@ -7,9 +15,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientUploadComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
+    public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
 
-  ngOnInit() {
+    ngOnInit() {
+      this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
+      this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+        console.log("ImageUpload:uploaded:", item, status, response);
+    };
   }
 
 }

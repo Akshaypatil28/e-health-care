@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { FileSelectDirective } from 'ng2-file-upload';
+
 import 'rxjs/add/operator/map';
 
 import { AppComponent } from './app.component';
@@ -49,6 +51,7 @@ var appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    FileSelectDirective,
     HeaderComponent,
     LoginComponent,
     HomeComponent,

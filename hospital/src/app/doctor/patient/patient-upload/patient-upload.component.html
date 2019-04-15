@@ -1,3 +1,7 @@
-<p>
-  patient-upload works!
-</p>
+<input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+<!-- button to trigger the file upload when submitted -->
+<button type="button" class="btn btn-success btn-s"
+      (click)="uploader.uploadAll()"
+      [disabled]="!uploader.getNotUploadedItems().length">
+      Upload with ng-2 file uploader
+</button>
