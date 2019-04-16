@@ -1,11 +1,19 @@
-<!-- <input type="text" name="tp" ng2FileSelect [uploader]="uploader"> -->
-<input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+<form class="form-inline" (ngSubmit)="upload(frm)" #frm="ngForm">
+  <input type="text" name="summary" id="tp" ngModel>
+  <input type="file" name="file" (change)="onFileSelected($event)" id="fl">
+  <button type="submit" class="btn btn-primary">upload</button>
+</form>
+
+
+<!-- <input type="file" name="photo" ng2FileSelect [uploader]="uploader" /> -->
 <!-- button to trigger the file upload when submitted -->
-<button type="button" class="btn btn-success btn-s"
+<!-- <button type="button" class="btn btn-success btn-s"
       (click)="uploader.uploadAll()"
       [disabled]="!uploader.getNotUploadedItems().length">
       Upload
-</button>
+</button> -->
+
+
 <!-- <form>
 
   <input id="myForm" type="file" name="file" (change)="postMethod($event.target.files)">

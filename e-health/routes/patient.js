@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var multer = require('multer');
+var Busboy = require('busboy');
 
 const patientProfile = require('../Model/patientProfile.model');
 const PatientDatas = require('../Model/PatientData.model');
@@ -12,7 +13,7 @@ const storage = multer.diskStorage({
   }
 });
 
-var upload = multer({storage: storage}).single('photo');
+var upload = multer({storage: storage}).single('image');
 router.post('/login', function(req, res, next) {
   var uid = req.body.uid;
     patientProfile.findOne({uid: uid},(err,data)=>{
@@ -55,6 +56,7 @@ router.post('/login', function(req, res, next) {
   }); 
 
    router.post('/upload',(req,res)=>{
+
      var path = '';
      upload(req,res,(err)=>{
       if (err) {
@@ -63,10 +65,17 @@ router.post('/login', function(req, res, next) {
         return res.status(422).send("an Error occured");
       }  
      // No error occured.
-    //  console.log("kj");
+    console.log("summary: "+req.body.summary);
       path = req.file.path;
       res.json("Upload Completed for "+path); 
      });
+
+      // const busBoy = new  Busboy({headers: req.headers});
+      // busBoy.on('file', (fieldname, file,  filename, encoding, mimetype) => {
+      //     console.log("ljgrrkw");
+      // });
+
+      // busBoy.on('field')
    });
 
   
