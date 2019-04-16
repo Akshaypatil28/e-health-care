@@ -19,13 +19,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     // console.log('op'+this.cookieService.get('doctor_uid'));
     //to check doctor is already logged in or not
-    this.authService.checkLogin().subscribe((msg: string) => {
+    this.authService.checkLogin().subscribe((msg: String) => {
       if (msg !== 'false') {
       this.authService.loggedIn = true;
       // this.cookieService.delete('doctor_uid');
       this.router.navigate(['/doctor']);
-
-    }
+      }
     });
     // console.log('op'+this.cookieService.get('doctor_uid'));
 
@@ -33,13 +32,18 @@ export class LoginComponent implements OnInit {
 
   submit(form: NgForm){
     const uid = JSON.stringify(form.value.uid);
-    this.authService.login(uid).subscribe((msg: string) => {
-      // console.log(msg);
-      this.authService.loggedIn = true;
-      this.cookieService.set('doctor_uid', uid);
+    this.authService.login(uid).subscribe((msg: String) => {
+      console.log(msg);
+        if(msg ==="true"){
+          this.authService.loggedIn = true;
+          this.cookieService.set('doctor_uid', uid);
+          this.router.navigate(['/doctor']);
+        }
+        else
+          this.router.navigate(['/']);
     });
     console.log('op' + this.cookieService.get('doctor_uid'));
-    this.router.navigate(['/doctor']);
+
 
   }
 }

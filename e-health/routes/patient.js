@@ -2,17 +2,25 @@ var express = require('express');
 var router = express.Router();
 var multer = require('multer');
 
-const Profile = require('../Model/Profile.model');
+const patientProfile = require('../Model/patientProfile.model');
 const PatientDatas = require('../Model/PatientData.model');
 
-var upload = multer({dest: './uploads'}).single('photo');
-router.post('/', function(req, res, next) {
+const storage = multer.diskStorage({
+  destination : './uploads',
+  filename: function(req, file, callback) {
+      callback(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
+  }
+});
+
+var upload = multer({storage: storage}).single('photo');
+router.post('/login', function(req, res, next) {
   var uid = req.body.uid;
-    Profile.findOne({uid: uid},(err,data)=>{
+    patientProfile.findOne({uid: uid},(err,data)=>{
       if(err){
          res.json('false');
       }
       else{
+        // console.log(data);
         res.json(data);
       }
     })
@@ -27,21 +35,23 @@ router.post('/', function(req, res, next) {
         res.json(data);
      
    });
+  }); 
 
    router.post('/upload',(req,res)=>{
      var path = '';
      upload(req,res,(err)=>{
       if (err) {
         // An error occurred when uploading
-        console.log(err);
-        return res.status(422).send("an Error occured")
+        console.log("err");
+        return res.status(422).send("an Error occured");
       }  
      // No error occured.
+    //  console.log("kj");
       path = req.file.path;
-      return res.send("Upload Completed for "+path); 
-     })
-   })
+      res.json("Upload Completed for "+path); 
+     });
+   });
 
-  }); 
+  
   
 module.exports = router;

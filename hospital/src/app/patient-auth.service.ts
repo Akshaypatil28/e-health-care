@@ -34,7 +34,7 @@ export class PatientAuthService {
   }
 
   login(uid: string) {
-    return this.http.post(`${this.url}/patient`,{'uid': uid});
+    return this.http.post(`${this.url}/patient/login`,{'uid': uid});
   }
 
   logout() {

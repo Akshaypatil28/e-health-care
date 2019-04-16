@@ -35,7 +35,7 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions));
-app.use('/', doctorRouter);
+app.use('/doctor', doctorRouter);
 app.use('/patient', patientRouter);
 
 

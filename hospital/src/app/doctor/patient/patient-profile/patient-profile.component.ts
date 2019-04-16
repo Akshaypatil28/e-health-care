@@ -20,7 +20,8 @@ export class PatientProfileComponent implements OnInit {
     // this.patient = this.patientService.getProfile();
     if(this.patientAuthService.loggedIn){
       this.patientService.getProfile().subscribe((patient: any)=>{
-          this.patient = patient;
+        console.log(patient)  ;
+        this.patient = patient;
       });
     }
   }

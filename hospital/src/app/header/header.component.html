@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
 
-  <a class="navbar-brand" [routerLink]="['/']">Home</a>
+  <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+    true}">Home</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
@@ -8,12 +9,13 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" *ngIf="!this.authService.loggedIn; else logout" routerLink="/login">Login</a>
+        <a class="nav-link" *ngIf="!this.authService.loggedIn; else logout" routerLink="/login" routerLinkActive="active-link">Login</a>
       </li>
 
       <!-- <ng-template class="tp" #logout> -->
         <li class="nav-item" *ngIf="this.authService.loggedIn">
-          <a class="nav-link" routerLink="/doctor">Profile</a>
+          <a class="nav-link" routerLink="/doctor" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+            true}">Profile</a>
         </li>
         <li class="nav-item" *ngIf="this.authService.loggedIn">
             <a class="nav-link" routerLink="/doctor/login"  *ngIf="!this.patientAuthService.loggedIn; else patientLogout">Patient_Login</a>
@@ -24,7 +26,8 @@
                  Patient
                 </a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" routerLink="/patient">Patient_Profile</a>
+                  <a class="dropdown-item" routerLink="/patient" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                    true}">Patient_Profile</a>
                   <a class="dropdown-item" routerLink="/patient/data">documents</a>
                   <a class="dropdown-item" routerLink="/patient/upload">upload_documents</a>
                   <a class="dropdown-item" routerLink="/patient/logout">Patient_logout</a>

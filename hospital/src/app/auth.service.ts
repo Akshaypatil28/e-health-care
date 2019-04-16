@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   login(uid: string) {
-    return this.http.post(`${this.url}/doctor`,{'uid': uid});
+    return this.http.post(`${this.url}/doctor/login`,{'uid': uid});
     // this.loggedIn = true;
   }
 

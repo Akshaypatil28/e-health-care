@@ -3,18 +3,22 @@ var session = require('express-session');
 
 var router = express.Router();
 
-const Profile = require('../Model/Profile.model');
+const Doctor = require('../Model/doctorProfile.model');
 
 /* GET home page. */
 router.post('/login', function(req, res, next) {
   //  if(req.session.uid){
    var uid = req.body.uid;
-    Profile.findOne({uid: uid},(err,data)=>{
+    Doctor.findOne({uid: uid},(err,data)=>{
       if(err){
          res.json('false');
+         console.log(uid);
+      }
+      else if(data){
+        res.json('true');
       }
       else{
-        res.json('true');
+         res.json('false');
       }
     })
   //   }
@@ -24,9 +28,9 @@ router.post('/login', function(req, res, next) {
 });
 
 
-router.post('/doctor', function(req, res, next) {
+router.post('/profile', function(req, res, next) {
   var uid = req.body.uid;
-  Profile.findOne({uid: uid},(err,data)=>{
+  Doctor.findOne({uid: uid},(err,data)=>{
     if(err){
       res.json('false');
     }
