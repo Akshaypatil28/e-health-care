@@ -22,6 +22,7 @@ export class PatientLoginComponent implements OnInit {
 
     this.patientAuthService.checkLogin().subscribe((msg: string) => {
       if (msg !== 'false') {
+        // console.log("incorecy");
       this.patientAuthService.loggedIn = true;
       // this.cookieService.delete('doctor_uid');
       this.router.navigate(['/patient']);
@@ -34,11 +35,17 @@ export class PatientLoginComponent implements OnInit {
     const uid = JSON.stringify(form.value.uid);
     this.patientAuthService.login(uid).subscribe((msg: string) => {
       // console.log(msg);
+    if(msg==="true"){
       this.patientAuthService.loggedIn = true;
       this.cookieService.set('patient_uid', uid);
+      this.router.navigate(['/patient']);
+    }
+    else{
+      this.router.navigate(['/doctor']);
+    }
     });
-    console.log('op' + this.cookieService.get('patient_uid'));
-    this.router.navigate(['/patient']);
+    // console.log('op' + this.cookieService.get('patient_uid'));
+
   }
 
 }
