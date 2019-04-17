@@ -1,5 +1,6 @@
 <form class="form-inline" (ngSubmit)="upload(frm)" #frm="ngForm">
   <input type="text" name="summary" id="tp" ngModel>
+  <input type="text" name="disease" ngModel>
   <input type="file" name="file" (change)="onFileSelected($event)" id="fl">
   <button type="submit" class="btn btn-primary">upload</button>
 </form>

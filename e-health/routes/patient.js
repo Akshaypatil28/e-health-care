@@ -4,7 +4,7 @@ var multer = require('multer');
 var Busboy = require('busboy');
 
 const patientProfile = require('../Model/patientProfile.model');
-const PatientDatas = require('../Model/PatientData.model');
+const PatientData = require('../Model/PatientData.model');
 
 const storage = multer.diskStorage({
   destination : './uploads',
@@ -45,9 +45,9 @@ router.post('/login', function(req, res, next) {
   
   
   router.post('/data', function(req, res) {
-   const uid = req.body.uid;
-   console.log(uid);
-   PatientDatas.find({uid:uid},(err,data)=>{
+   const patient_uid = req.body.uid;
+  //  console.log(uid);
+   PatientData.find({patient_uid: patient_uid},(err,data)=>{
      
        console.log(data);
         res.json(data);
@@ -64,19 +64,21 @@ router.post('/login', function(req, res, next) {
         console.log("err");
         return res.status(422).send("an Error occured");
       }  
+      req.body.image = req.file.filename ;
      // No error occured.
-    console.log("summary: "+req.body.summary);
-      path = req.file.path;
-      res.json("Upload Completed for "+path); 
+     const patientdata =new PatientData(req.body);
+     patientdata.save(err => {
+       if(err){
+        res.json("Upload unsuccessful for "); 
+       }
+       path = req.file.filename;
+       res.json("Upload Completed for "+path); 
+     })
+    
+     
      });
 
-      // const busBoy = new  Busboy({headers: req.headers});
-      // busBoy.on('file', (fieldname, file,  filename, encoding, mimetype) => {
-      //     console.log("ljgrrkw");
-      // });
-
-      // busBoy.on('field')
-   });
+  });
 
   
   

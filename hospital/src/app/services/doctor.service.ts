@@ -15,4 +15,9 @@ export class DoctorService {
     return this.http.post(`${this.url}/doctor/profile`, {'uid':this.cookieService.get('doctor_uid') });
     // return this.profile;
   }
+
+  //other doctors profile
+  seeProfile(doctor_uid){
+    return this.http.post(`${this.url}/doctor/seeprofile`, {'uid':doctor_uid });
+  }
 }

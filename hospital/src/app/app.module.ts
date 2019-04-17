@@ -29,6 +29,8 @@ import { combineLatest, from } from 'rxjs';
 import { PatientLogoutComponent } from './doctor/patient-logout/patient-logout.component';
 import { DoctorService } from './services/doctor.service';
 import { PatientService } from './services/patient.service';
+import { SearchRecordComponent } from './doctor/patient/search-record/search-record.component';
+import { PatientViewComponent } from './patient-view/patient-view.component';
 
 
 
@@ -40,10 +42,12 @@ var appRoutes: Routes = [
   { path: '', component: DoctorProfileComponent },
   { path:'login', component: PatientLoginComponent }
   ] },
+{ path: 'patientView', component: PatientViewComponent },
 { path: 'patient',canActivate: [ PatientAuthGaurdService ], component: PatientComponent, children:[
     { path: '', component: PatientProfileComponent},
     { path: 'data', component: PatientDataComponent },
     { path: 'upload', component: PatientUploadComponent },
+    { path: 'search', component: SearchRecordComponent },
     { path: 'logout', component: PatientLogoutComponent }
 ]}
 ]
@@ -63,7 +67,9 @@ var appRoutes: Routes = [
     PatientProfileComponent,
     PatientDataComponent,
     PatientUploadComponent,
-    PatientLogoutComponent
+    PatientLogoutComponent,
+    SearchRecordComponent,
+    PatientViewComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ var session = require('express-session');
 var router = express.Router();
 
 const Doctor = require('../Model/doctorProfile.model');
+const Seeprofile = require('../Model/seeProfile.model');
 
 /* GET home page. */
 router.post('/login', function(req, res, next) {
@@ -36,6 +37,19 @@ router.post('/profile', function(req, res, next) {
     }
     else{
       res.json(data);
+    }
+  })
+});
+
+router.post('/seeprofile', function(req, res, next) {
+  var uid = req.body.uid;
+  Doctor.findOne({uid: uid},(err,data)=>{
+    if(err){
+      res.json('false');
+    }
+    else{
+      var doctor =  new Seeprofile(data);
+      res.json(doctor);
     }
   })
 });

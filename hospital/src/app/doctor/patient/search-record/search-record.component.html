@@ -1,0 +1,13 @@
+<div class="card-header">d_uid: {{record.doctor_uid}}</div>
+<button (click)="showProfile()" [disabled]="isActive">Doctor Profile</button>
+<div class="card-header">p_uid: {{record.patient_uid}}</div>
+<div class="card-body">disease:{{ record.summary}}</div>
+
+<div *ngIf="isActive">
+  {{  doctor.name }}
+  {{  doctor.degree }}
+  {{  doctor.specialist }}
+  {{  doctor.email }}
+  {{  doctor.image }}
+  <img src="http://localhost:8080/images/doctor/{{ doctor.image }}" alt="sdfb">
+</div>

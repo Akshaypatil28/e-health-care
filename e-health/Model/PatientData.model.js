@@ -1,16 +1,19 @@
 const mongoose = require('mongoose');
 
 const PatientData = mongoose.Schema({
-    uid: {
+    patient_uid: {
+        type: String
+    },
+    doctor_uid: {
+        type: String
+    },
+    image: {
+        type: String
+    },
+    summary: {
         type: String
     },
     disease: {
-        type: String
-    },
-    hospital: {
-        type: String  
-    },
-    doctor: {
         type: String
     }
 });

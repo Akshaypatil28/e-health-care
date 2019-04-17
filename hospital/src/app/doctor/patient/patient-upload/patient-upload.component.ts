@@ -1,8 +1,9 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 const URL = 'http://localhost:8080/patient/upload';
 // import { PatientAuthService } from '../../patient-auth.service';
 
@@ -15,8 +16,9 @@ const URL = 'http://localhost:8080/patient/upload';
   styleUrls: ['./patient-upload.component.css']
 })
 export class PatientUploadComponent implements OnInit {
-  private elem: ElementRef;
-  constructor(private router: Router, private http: HttpClient) { }
+  @ViewChild('frm') formValues;
+  constructor(private http: HttpClient,
+              private cookieService: CookieService) { }
     // public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
     selectedFile: File =null;
     ngOnInit() {
@@ -30,11 +32,15 @@ export class PatientUploadComponent implements OnInit {
   }
   upload(form: NgForm) {
       const fd = new FormData();
+      fd.append('patient_uid', this.cookieService.get('patient_uid'));
+      fd.append('doctor_uid', this.cookieService.get('doctor_uid'));
       fd.append('image', this.selectedFile, this.selectedFile.name);
       fd.append('summary', form.value.summary);
-      console.log(this.selectedFile);
+      fd.append('disease', form.value.disease);
+
       this.http.post('http://localhost:8080/patient/upload', fd).subscribe(res => {
-          console.log(res);
+          alert(res);
+          this.formValues.resetForm();
         })
   }
 

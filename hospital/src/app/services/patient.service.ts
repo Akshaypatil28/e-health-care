@@ -8,7 +8,9 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class PatientService {
-
+  patientData: any;
+  dataSearch: any=[];
+  keyword: String = "";
   constructor(private http: HttpClient, private cookieService: CookieService) { }
 url = 'http://localhost:8080';
   getProfile(){
