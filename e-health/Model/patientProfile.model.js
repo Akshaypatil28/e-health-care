@@ -29,11 +29,7 @@ const ProfileSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    email:{
-        type: String,
-        required: true
-    },
-    city:{
+    email: {
         type: String,
         required: true
     },

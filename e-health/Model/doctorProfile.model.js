@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const ProfileSchema = mongoose.Schema({
-    uid:{
+    uid: {
         type: String,
         required: true
     },
-    name:{
+    name: {
         type: String,
         required: true
     },
@@ -21,7 +21,7 @@ const ProfileSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    specialist:{
+    specialist: {
         type: String,
         required: true
     },
@@ -29,15 +29,11 @@ const ProfileSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    mobile:{
+    mobile: {
         type: Number,
         required: true
     },
-    email:{
-        type: String,
-        required: true
-    },
-    city:{
+    email: {
         type: String,
         required: true
     },
