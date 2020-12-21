@@ -6,7 +6,7 @@ const ProfileSchema = mongoose.Schema({
         required: true
     },
     name: {
-        type: String,
+        type: Number,
         required: true
     },
     age: {
