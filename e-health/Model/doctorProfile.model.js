@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 const ProfileSchema = mongoose.Schema({
     uid: {
-        type: String,
+        type: Number,
         required: true
     },
     name: {
-        type: String,
+        type: Number,
         required: true
     },
     age: {
